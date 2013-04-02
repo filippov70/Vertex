@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 rel. 2 (http://www.altova.com) by FGUP FKC Zemlja (FGUP FKC Zemlja) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<!--Справочник субъектов РФ-->
+	<xs:include schemaLocation="dRegionsRF.xsd"/>
+	<!--Справочник "Типы адресных объектов (по КЛАДР). 2-й уровень (Тип населенного пункта)"	-->
+	<xs:include schemaLocation="dDistrict.xsd"/>
+	<!--Справочник "Типы адресных объектов (по КЛАДР). 3-й уровень (Тип населенного пункта)"	-->
+	<xs:include schemaLocation="dCity.xsd"/>
+	<!--Справочник "Типы адресных объектов (по КЛАДР). 5-й уровень (геоним)"-->
+	<xs:include schemaLocation="dStreets.xsd"/>
+	<!--Справочник "Типы адресных объектов (по КЛАДР). 4-й уровень (Тип населенного пункта)"	-->
+	<xs:include schemaLocation="dInhabitedLocalities.xsd"/>
+	<!--Справочник "Типы адресных объектов Городской район"	-->
+	<xs:include schemaLocation="dUrbanDistrict.xsd"/>
+	<!--Справочник "Типы адресных объектов Сельсовет	-->
+	<xs:include schemaLocation="dSovietVillage.xsd"/>
+	<!--Справочник расширенных адресных элементов первого уровня	-->
+	<xs:include schemaLocation="dLocationLevel1.xsd"/>
+	<!--Справочник расширенных адресных элементов второго уровня	-->
+	<xs:include schemaLocation="dLocationLevel2.xsd"/>
+	<!--Справочник расширенных адресных элементов третьего уровня	-->
+	<xs:include schemaLocation="dLocationLevel3.xsd"/>
+	<!--Справочник расширенных адресных элементов уровня помещения-->
+	<xs:include schemaLocation="dApartment.xsd"/>
+	<!--1/03/2007 ВНИМАНИЕ!  Подключен справочник dInhabitedLocalities.xsd к аатрибуту Type элемента Locality. -->
+	<!--20.05.09 типы Адресных объектов не связаны со справочниками-->
+	<!--2010.12.25 Код региона сделан обязательным -->
+	<!--2011.02.10 Подключены справочники адресных элементов-->
+	<!--2011.05.03 Элементы House, Building, Structure заменены на Level1, Level2, Level3. Элемент Apartment приведен к общему виду "тип-значение" -->
+	<xs:complexType name="tAddress">
+		<xs:annotation>
+			<xs:documentation>Почтовый адрес</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Code_OKATO" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ОКАТО</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="11"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Code_KLADR" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>КЛАДР</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Postal_Code" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Почтовый индекс</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:length value="6"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Region" type="dRegionsRF">
+				<xs:annotation>
+					<xs:documentation>Код региона</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="District" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Район</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="Name" use="required">
+						<xs:annotation>
+							<xs:documentation>Наименование</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="255"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="Type" type="dDistrict" use="required">
+						<xs:annotation>
+							<xs:documentation>Тип</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="City" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Муниципальное образование</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="Name" use="required">
+						<xs:annotation>
+							<xs:documentation>Наименование</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="255"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="Type" type="dCity" use="required">
+						<xs:annotation>
+							<xs:documentation>Тип</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Urban_District" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Городской район</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="Name" use="required">
+						<xs:annotation>
+							<xs:documentation>Наименование</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="255"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="Type" type="dUrbanDistrict" use="required">
+						<xs:annotation>
+							<xs:documentation>Тип</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Soviet_Village" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Сельсовет</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="Name" use="required">
+						<xs:annotation>
+							<xs:documentation>Наименование</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="255"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="Type" type="dSovietVillage" use="required">
+						<xs:annotation>
+							<xs:documentation>Тип</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Locality" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Населенный пункт</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="Name" use="required">
+						<xs:annotation>
+							<xs:documentation>Наименование</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="255"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="Type" type="dInhabitedLocalities" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Street" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Улица</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="Name" use="required">
+						<xs:annotation>
+							<xs:documentation>Наименование</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="255"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="Type" type="dStreets" use="required">
+						<xs:annotation>
+							<xs:documentation>Тип</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Level1" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дом</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="Type" type="dLocationLevel1Type" use="required">
+						<xs:annotation>
+							<xs:documentation>Тип</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="Value" use="required">
+						<xs:annotation>
+							<xs:documentation>Значение</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="255"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Level2" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Корпус</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="Type" type="dLocationLevel2Type" use="required">
+						<xs:annotation>
+							<xs:documentation>Тип</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="Value" use="required">
+						<xs:annotation>
+							<xs:documentation>Значение</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="255"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Level3" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Строение</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="Type" type="dLocationLevel3Type" use="required">
+						<xs:annotation>
+							<xs:documentation>Тип</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="Value" use="required">
+						<xs:annotation>
+							<xs:documentation>Значение</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="255"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Apartment" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Квартира</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="Type" type="dApartmentType" use="required">
+						<xs:annotation>
+							<xs:documentation>Тип</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="Value" use="required">
+						<xs:annotation>
+							<xs:documentation>Значение</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="255"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Other" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Иное</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="2500"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Note" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Неформализованное описание</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="4000"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

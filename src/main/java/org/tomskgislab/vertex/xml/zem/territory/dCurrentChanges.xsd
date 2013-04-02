@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 rel. 2 (http://www.altova.com) by FGUP FKC Zemlja (FGUP FKC Zemlja) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+	<xs:simpleType name="dCurrentChanges">
+		<xs:annotation>
+			<xs:documentation>Словарь текущих изменений</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="284001000000">
+				<xs:annotation>
+					<xs:documentation>Общие сведения об объекте недвижимости (площадь)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="284002000000">
+				<xs:annotation>
+					<xs:documentation>Общие сведения об объекте недвижимости (категория)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="284003000000">
+				<xs:annotation>
+					<xs:documentation>Общие сведения об объекте недвижимости (разрешенное использование)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="284004000000">
+				<xs:annotation>
+					<xs:documentation>Общие сведения об объекте недвижимости (адрес, при отсутствии адреса - описание местоположения)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="284005000000">
+				<xs:annotation>
+					<xs:documentation>Общие сведения об объекте недвижимости (сведения о природных объектах - леса, водные объекты, иные природные объекты)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="284006000000">
+				<xs:annotation>
+					<xs:documentation>Общие сведения об объекте недвижимости (иное)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="284007000000">
+				<xs:annotation>
+					<xs:documentation>Сведения о местоположении границ земельного участка</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="284008000000">
+				<xs:annotation>
+					<xs:documentation>Контактный адрес правообладателя</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="284009000000">
+				<xs:annotation>
+					<xs:documentation>Сведения о вещных правах</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="284010000000">
+				<xs:annotation>
+					<xs:documentation>Сведения о частях объекта недвижимости</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="284010001000">
+				<xs:annotation>
+					<xs:documentation>Образование (создание) части объекта недвижимости</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="284010002000">
+				<xs:annotation>
+					<xs:documentation>Изменение части объекта недвижимости</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="284010003000">
+				<xs:annotation>
+					<xs:documentation>Прекращение существования части объекта недвижимости</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="284011000000">
+				<xs:annotation>
+					<xs:documentation>Сведения об ограничениях (обременениях) вещных прав</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="284012000000">
+				<xs:annotation>
+					<xs:documentation>Сведения о кадастровой стоимости</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="284013000000">
+				<xs:annotation>
+					<xs:documentation>Сведения о кадастровом инженере</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="284014000000">
+				<xs:annotation>
+					<xs:documentation>Сведения о прекращении существования объекта недвижимости</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="284015000000">
+				<xs:annotation>
+					<xs:documentation>Иные сведения об объекте недвижимости</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="284016000000">
+				<xs:annotation>
+					<xs:documentation>Сведения о местоположении на земельном участке</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="284017000000">
+				<xs:annotation>
+					<xs:documentation>Сведения о назначении</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="284018000000">
+				<xs:annotation>
+					<xs:documentation>Сведения об этажности</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="284019000000">
+				<xs:annotation>
+					<xs:documentation>Сведения о материале наружных стен</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="284020000000">
+				<xs:annotation>
+					<xs:documentation>Сведения о расположении в строении</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="284021000000">
+				<xs:annotation>
+					<xs:documentation>Сведения о годе ввода в эксплуатацию и годе завершения строительства</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="284022000000">
+				<xs:annotation>
+					<xs:documentation>Сведения, содержащие описание прохождения участка государственной границы Российской  Федерации,  описание  местоположения  границы между субъектами Российской  Федерации,  описание  местоположения границы  муниципального  образования,   описание   местоположения границы населенного пункта</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="284023000000">
+				<xs:annotation>
+					<xs:documentation>Сведения, содержащие реквизиты правовых актов</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="284024000000">
+				<xs:annotation>
+					<xs:documentation>Сведения, содержащие индивидуальное обозначение территориальной зоны или зоны с особыми условиями использования территории</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="284025000000">
+				<xs:annotation>
+					<xs:documentation>Сведения, содержащие описание местоположения границы территориальной зоны или зоны с особыми условиями использования территории</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="284026000000">
+				<xs:annotation>
+					<xs:documentation>Сведения, содержащие реквизиты правовых актов об установлении территориальной зоны или зоны с особыми условиями использования территории</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="284027000000">
+				<xs:annotation>
+					<xs:documentation>Сведения о содержании ограничений использования объектов недвижимости в пределах зоны с особыми условиями использования территорий</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="284028000000">
+				<xs:annotation>
+					<xs:documentation>Сведения о видах разрешенного использования объектов недвижимости, а также предельных максимальных и минимальных размерах земельных участков, входящих в состав территориальной зоны</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="284029000000">
+				<xs:annotation>
+					<xs:documentation>Сведения о дате создания картографической основы кадастра</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="284030000000">
+				<xs:annotation>
+					<xs:documentation>Сведения об организации, создавшей картографическую основу кадастра</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="284031000000">
+				<xs:annotation>
+					<xs:documentation>Сведения о масштабе картографической основы</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="284032000000">
+				<xs:annotation>
+					<xs:documentation>Сведения о системе координат картографической основы государственного кадастра недвижимости</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="284033000000">
+				<xs:annotation>
+					<xs:documentation>Сведения, содержащие каталог (список) координат пунктов опорной межевой сети с указанием системы координат</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="284034000000">
+				<xs:annotation>
+					<xs:documentation>Сведения о типах знаков опорной межевой сети</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

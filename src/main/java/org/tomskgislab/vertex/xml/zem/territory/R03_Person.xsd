@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 rel. 2 (http://www.altova.com) by FGUP FKC Zemlja (FGUP FKC Zemlja) -->
+<!-- 2010.0713 Добавлен элемент "Пол" (Sex) -->
+<!--2011.05.11 добавлен необязательный элемент СНИЛС -->
+<!--2011.05.11 подключена новая схема адреса v036 -->
+<!--2011.05.16 Элемент "Document" сделан обязательным -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<!--Повторноиспользуемая подсхема-->
+	<xs:include schemaLocation="R03_Document.xsd"/>
+	<xs:include schemaLocation="V036_STD_Address.xsd"/>
+	<xs:complexType name="tPerson">
+		<xs:annotation>
+			<xs:documentation>Физическое лицо</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="FIO" type="tFIO">
+				<xs:annotation>
+					<xs:documentation>Фамилия, имя, отчество для Физ. лиц</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DateBirth" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата рождения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Place_Birth" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Место рождения</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Document" type="tDocument">
+				<xs:annotation>
+					<xs:documentation>Документ, удостоверяющий личность</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Location" type="tAddress" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Зарегистрированный адрес субъекта</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="E-mail" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Адрес электронной почты</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="50"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Phone" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Телефон</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="FamilyStatus" type="sFamilyStatus" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Семейное положение</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Citizenship" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Гражданство</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="IsUnderAge" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Признак несовершеннолетия (true)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Contact_Info" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Контактная информация</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="512"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Sex" type="sSex" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Пол</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SNILS" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>страховой номер индивидуального лицевого счета </xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="tFIO">
+		<xs:annotation>
+			<xs:documentation>Фамилия, Имя, Отчество</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Surname">
+				<xs:annotation>
+					<xs:documentation>Фамилия</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="45"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="First">
+				<xs:annotation>
+					<xs:documentation>Имя</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Patronymic" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Отчество</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="45"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="sSex">
+		<xs:annotation>
+			<xs:documentation>Пол</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="M">
+				<xs:annotation>
+					<xs:documentation>Мужской</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="F">
+				<xs:annotation>
+					<xs:documentation>Женский</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="sFamilyStatus">
+		<xs:annotation>
+			<xs:documentation>Семейное положение</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="0">
+				<xs:annotation>
+					<xs:documentation>Не в браке</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="1">
+				<xs:annotation>
+					<xs:documentation>В браке</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

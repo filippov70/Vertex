@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 rel. 2 (http://www.altova.com) by FGUP FKC Zemlja (FGUP FKC Zemlja) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+	<xs:simpleType name="dGovernance_Code">
+		<xs:annotation>
+			<xs:documentation>Тип субъекта правоотношений</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="007001000000">
+				<xs:annotation>
+					<xs:documentation>Публично-правовое образование</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="007001001000">
+				<xs:annotation>
+					<xs:documentation>Российская Федерация, субъект Российской Федерации или муниципальное образование</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="007001001001">
+				<xs:annotation>
+					<xs:documentation>Российская Федерация</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="007001001002">
+				<xs:annotation>
+					<xs:documentation>Субъект Российской Федерации</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="007001001003">
+				<xs:annotation>
+					<xs:documentation>Муниципальное образование</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="007001002000">
+				<xs:annotation>
+					<xs:documentation>Иностранное государство</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="007002000000">
+				<xs:annotation>
+					<xs:documentation>Юридическое лицо</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="007002001000">
+				<xs:annotation>
+					<xs:documentation>Юридическое лицо, зарегистрированное в Российской Федерации</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="007002002000">
+				<xs:annotation>
+					<xs:documentation>Юридическое лицо, зарегистрированное в иностранном государстве</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="007002003000">
+				<xs:annotation>
+					<xs:documentation>Международная организация</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="007003000000">
+				<xs:annotation>
+					<xs:documentation>Физическое лицо</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="007003001000">
+				<xs:annotation>
+					<xs:documentation>Гражданин Российской Федерации</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="007003002000">
+				<xs:annotation>
+					<xs:documentation>Иностранный гражданин</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="007003003000">
+				<xs:annotation>
+					<xs:documentation>Лицо без гражданства</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="007004000000">
+				<xs:annotation>
+					<xs:documentation>Иной субъект отношений, возникающих при регистрации права</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="007004001000">
+				<xs:annotation>
+					<xs:documentation>Собственники помещений в многоквартирном доме</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="007004002000">
+				<xs:annotation>
+					<xs:documentation>Владельцы инвестиционных паев</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="007004003000">
+				<xs:annotation>
+					<xs:documentation>Участники долевого строительства</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="007004004000">
+				<xs:annotation>
+					<xs:documentation>Владельцы ипотечных сертификатов участия</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

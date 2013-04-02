@@ -1,0 +1,1 @@
+xjc -extension -p org.tomskgislab.LandProgram.xml.shema -d shema STD_ZONE.xsd
