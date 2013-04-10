@@ -53,6 +53,12 @@
 		</plugins>
 	</build>
 	<dependencies>
+		<!-- http://stackoverflow.com/questions/1927470/javafx-with-maven -->
+	    <dependency>
+	      <groupId>com.oracle</groupId>
+	      <artifactId>javafx</artifactId>
+	      <version>2.2.7</version>
+	    </dependency>
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>

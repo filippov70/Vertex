@@ -12,7 +12,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 public class App extends Application {
-	TextArea t;
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -21,11 +20,10 @@ public class App extends Application {
 			Scene s = new Scene(dh);
 			primaryStage.setScene(s);
 			primaryStage.show();
-	
-			//t = (TextArea) loader.load();
-			} catch (IOException e) {
-			// TODO Auto-generated catch block
+		} 
+		catch (IOException e) {
 			e.printStackTrace();
+			System.exit(-1);
 		}
 	}
 
