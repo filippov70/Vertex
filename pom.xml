@@ -30,7 +30,7 @@
 					<archive>
 						<manifest>
 							<addClasspath>true</addClasspath>
-							<mainClass>org.tomskgislab.vertex.AppWindow</mainClass>
+							<mainClass>org.tomskgislab.vertex.App</mainClass>
 							<classpathPrefix>lib/</classpathPrefix>
 						</manifest>
 					</archive>
