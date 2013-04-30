@@ -89,7 +89,7 @@ public class Parcel extends Lot {
 		SimpleFeatureBuilder builder = new SimpleFeatureBuilder(PARCEL_TYPE);
 		for (int i = 0; i < polyg.size(); i++) {
 			builder.add(polyg.get(i));
-			builder.add("Contour"+(i+1));
+			builder.add("Contour" + (i + 1));
 			SimpleFeature feature = builder.buildFeature(null);
 			features.add(feature);
 		}
@@ -490,6 +490,7 @@ public class Parcel extends Lot {
 			logger.error(ex.getLocalizedMessage());
 		}
 	}
+
 	public void saveTXT() {
 		String newPath = "Coordinate.txt";
 		JFileDataStoreChooser chooser = new JFileDataStoreChooser("txt");
@@ -514,37 +515,36 @@ public class Parcel extends Lot {
 				for (int t = 0; t < cont.getNumPoints(); t++) {
 					if (t == cont.getNumPoints() - 1) {
 						out.println(cont.getPointN(t).getX() + " "
-								+ cont.getPointN(t).getY()+System.getProperty("line.separator"));
-						//out.println("\n");
-					//	System.getProperty("line.separator");
+								+ cont.getPointN(t).getY()
+								+ System.getProperty("line.separator"));
+
 					} else {
 						out.println(cont.getPointN(t).getX() + " "
 								+ cont.getPointN(t).getY());
 					}
 				}
-				// out.println("\r");
 				for (int r = 0; r < polyg.get(i).getNumInteriorRing(); r++) {
 					LineString cont1 = polyg.get(i).getInteriorRingN(r);
 					for (int y = 0; y < cont1.getNumPoints(); y++) {
 						if (y == cont1.getNumPoints() - 1
 								&& r == polyg.get(i).getNumInteriorRing() - 1) {
 							out.println(cont1.getPointN(y).getX() + " "
-									+ cont1.getPointN(y).getY()+System.getProperty("line.separator"));
-							//System.getProperty("line.separator");
-							//out.println("\n");
+									+ cont1.getPointN(y).getY()
+									+ System.getProperty("line.separator")+ System.getProperty("line.separator"));
+
 						} else if (y == cont1.getNumPoints() - 1) {
 							out.println(cont1.getPointN(y).getX() + " "
-									+ cont1.getPointN(y).getY()+System.getProperty("line.separator"));
-							//System.getProperty("line.separator");
-							//out.println("\n");
+									+ cont1.getPointN(y).getY()
+									+ System.getProperty("line.separator"));
+
 						} else {
 							out.println(cont1.getPointN(y).getX() + " "
 									+ cont1.getPointN(y).getY());
 						}
 					}
-					
+
 				}
-				
+
 			}
 			out.close();
 
