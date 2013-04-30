@@ -90,12 +90,12 @@ public class ACadParser {
 		List<List<String>> container = new ArrayList<List<String>>();
 		List<String> inside = new ArrayList<String>();
 		for (int i = 0; i < txt.size(); i++) {
-			if (txt.get(i).contains("X")) {
+			if (txt.get(i).contains("X=")) {
 				inside.add(txt.get(i));
 				if (i == txt.size() - 1) {
 					container.add(inside);
 					inside = new ArrayList<String>();
-				} else if (txt.get(i + 1).contains("X") == false) {
+				  } else if (txt.get(i + 1).contains("X=") == false) {
 					container.add(inside);
 					inside = new ArrayList<String>();
 
@@ -112,13 +112,13 @@ public class ACadParser {
 								.get(r)
 								.substring(
 										container.get(i).get(r).indexOf("X") + 2,
-										container.get(i).get(r).indexOf("Y") - 2)),
+										 container.get(i).get(r).indexOf("Y") - 1)),
 						Double.valueOf(container
 								.get(i)
 								.get(r)
 								.substring(
 										container.get(i).get(r).indexOf("Y") + 2,
-										container.get(i).get(r).indexOf("Z") - 2))));
+										 container.get(i).get(r).indexOf("Z") - 1))));
 			}
 			coord.add(new CoordinateList(XY.toArray(new Coordinate[XY.size()])));
 		}
@@ -177,6 +177,7 @@ public class ACadParser {
 			if (fir.contains(sec)) {
 				holes.add(rings.get(k));
 				rings.remove(k);
+				k--;
 			}
 		}
 

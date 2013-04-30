@@ -35,6 +35,7 @@ import org.odftoolkit.simple.style.StyleTypeDefinitions.HorizontalAlignmentType;
 import org.odftoolkit.simple.table.Cell;
 import org.odftoolkit.simple.table.CellRange;
 import org.odftoolkit.simple.table.Table;
+import org.omg.CORBA.Environment;
 import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.feature.simple.SimpleFeatureType;
 import org.opengis.referencing.FactoryException;
@@ -513,8 +514,9 @@ public class Parcel extends Lot {
 				for (int t = 0; t < cont.getNumPoints(); t++) {
 					if (t == cont.getNumPoints() - 1) {
 						out.println(cont.getPointN(t).getX() + " "
-								+ cont.getPointN(t).getY());
-						out.println("\n");
+								+ cont.getPointN(t).getY()+System.getProperty("line.separator"));
+						//out.println("\n");
+					//	System.getProperty("line.separator");
 					} else {
 						out.println(cont.getPointN(t).getX() + " "
 								+ cont.getPointN(t).getY());
@@ -527,20 +529,22 @@ public class Parcel extends Lot {
 						if (y == cont1.getNumPoints() - 1
 								&& r == polyg.get(i).getNumInteriorRing() - 1) {
 							out.println(cont1.getPointN(y).getX() + " "
-									+ cont1.getPointN(y).getY());
-							out.println("\n");
+									+ cont1.getPointN(y).getY()+System.getProperty("line.separator"));
+							//System.getProperty("line.separator");
+							//out.println("\n");
 						} else if (y == cont1.getNumPoints() - 1) {
 							out.println(cont1.getPointN(y).getX() + " "
-									+ cont1.getPointN(y).getY());
-							out.println("\n");
+									+ cont1.getPointN(y).getY()+System.getProperty("line.separator"));
+							//System.getProperty("line.separator");
+							//out.println("\n");
 						} else {
 							out.println(cont1.getPointN(y).getX() + " "
 									+ cont1.getPointN(y).getY());
 						}
 					}
-					// out.println("\r");
+					
 				}
-				// out.println("\r");
+				
 			}
 			out.close();
 
