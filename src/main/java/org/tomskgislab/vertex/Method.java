@@ -32,6 +32,8 @@ public class Method {
 	private MenuItem saveWKTMultiPolygon;
 	@FXML
 	private MenuItem saveODS;
+	@FXML
+	private MenuItem saveTXT;
 
 	@FXML
 	public void getText() {
@@ -98,5 +100,12 @@ public class Method {
 		}
 
 	}
+	@FXML
+	protected void saveTXT() throws ParseException {
+		ACadParser acp = new ACadParser(text.getText());
+		Parcel p = new Parcel(acp.getPolys());
+		p.saveTXT();
+	}
+
 
 }

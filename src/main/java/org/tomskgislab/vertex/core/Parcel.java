@@ -1,7 +1,9 @@
 package org.tomskgislab.vertex.core;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -485,6 +487,67 @@ public class Parcel extends Lot {
 
 		} catch (Exception ex) {
 			logger.error(ex.getLocalizedMessage());
+		}
+	}
+	public void saveTXT() {
+		String newPath = "Coordinate.txt";
+		JFileDataStoreChooser chooser = new JFileDataStoreChooser("txt");
+		chooser.setDialogTitle("Save text");
+		chooser.setSelectedFile(new File(newPath));
+
+		int returnVal = chooser.showSaveDialog(null);
+
+		if (returnVal != JFileDataStoreChooser.APPROVE_OPTION) {
+			// the user cancelled the dialog
+			File bad = null;
+
+		}
+
+		File newFile = chooser.getSelectedFile();
+		try {
+			PrintWriter out = new PrintWriter(new FileOutputStream(
+					chooser.getSelectedFile()));
+			for (int i = 0; i < polyg.size(); i++) {
+				LineString cont = polyg.get(i).getExteriorRing();
+
+				for (int t = 0; t < cont.getNumPoints(); t++) {
+					if (t == cont.getNumPoints() - 1) {
+						out.println(cont.getPointN(t).getX() + " "
+								+ cont.getPointN(t).getY());
+						out.println("\n");
+					} else {
+						out.println(cont.getPointN(t).getX() + " "
+								+ cont.getPointN(t).getY());
+					}
+				}
+				// out.println("\r");
+				for (int r = 0; r < polyg.get(i).getNumInteriorRing(); r++) {
+					LineString cont1 = polyg.get(i).getInteriorRingN(r);
+					for (int y = 0; y < cont1.getNumPoints(); y++) {
+						if (y == cont1.getNumPoints() - 1
+								&& r == polyg.get(i).getNumInteriorRing() - 1) {
+							out.println(cont1.getPointN(y).getX() + " "
+									+ cont1.getPointN(y).getY());
+							out.println("\n");
+						} else if (y == cont1.getNumPoints() - 1) {
+							out.println(cont1.getPointN(y).getX() + " "
+									+ cont1.getPointN(y).getY());
+							out.println("\n");
+						} else {
+							out.println(cont1.getPointN(y).getX() + " "
+									+ cont1.getPointN(y).getY());
+						}
+					}
+					// out.println("\r");
+				}
+				// out.println("\r");
+			}
+			out.close();
+
+		} catch (IOException e) {
+
+			e.printStackTrace();
+
 		}
 	}
 }
