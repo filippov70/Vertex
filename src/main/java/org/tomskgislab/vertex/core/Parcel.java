@@ -125,7 +125,9 @@ public class Parcel extends Lot {
 			logger.warn(ParcelTypeName + " не поддерживает чтение/запись");
 		}
 
-		logger.info("Завершение конвертации. ");
+		logger.info("Завершение конвертации. "
+				+ System.getProperty("line.separator") + "Shape сохранен в "
+				+ RenameParcelFile.getAbsolutePath());
 	}
 
 	private void saveData(SimpleFeatureStore parcelFeatureStore)
@@ -179,8 +181,7 @@ public class Parcel extends Lot {
 		} catch (Exception ex) {
 			logger.info("Ошибка вычисления длины линий ");
 			return -1.0;
-			
-			
+
 		}
 	}
 
@@ -212,7 +213,8 @@ public class Parcel extends Lot {
 			}
 			// File newFile = chooser.getSelectedFile();
 			doc.save(chooser.getSelectedFile());
-			logger.info("Успешное сохранение таблицы. ");
+			logger.info("Успешное сохранение таблицы в "
+					+ chooser.getSelectedFile().getAbsolutePath());
 		} catch (Exception ex) {
 			logger.error(ex.getLocalizedMessage());
 			logger.info("Ошибка созранения таблицы. ");
@@ -498,23 +500,25 @@ public class Parcel extends Lot {
 	}
 
 	public void saveTXT() {
-		String newPath = "Coordinate.txt";
-		JFileDataStoreChooser chooser = new JFileDataStoreChooser("txt");
-		chooser.setDialogTitle("Save text");
-		chooser.setSelectedFile(new File(newPath));
 
-		int returnVal = chooser.showSaveDialog(null);
-
-		if (returnVal != JFileDataStoreChooser.APPROVE_OPTION) {
-			// the user cancelled the dialog
-			File bad = null;
-
-		}
-
-		File newFile = chooser.getSelectedFile();
 		try {
+			JFileDataStoreChooser chooser = new JFileDataStoreChooser("txt");
+			chooser.setDialogTitle("Save text");
+			chooser.setSelectedFile(new File("Coordinate.txt"));
+
+			int returnVal = chooser.showSaveDialog(null);
+
+			if (returnVal != JFileDataStoreChooser.APPROVE_OPTION) {
+				// the user cancelled the dialog
+				File bad = null;
+				logger.info("Отмена сохранения текстового файла. ");
+				return;
+			}
+
+			File newFile = chooser.getSelectedFile();
 			PrintWriter out = new PrintWriter(new FileOutputStream(
 					chooser.getSelectedFile()));
+
 			for (int i = 0; i < polyg.size(); i++) {
 				LineString cont = polyg.get(i).getExteriorRing();
 
@@ -536,7 +540,8 @@ public class Parcel extends Lot {
 								&& r == polyg.get(i).getNumInteriorRing() - 1) {
 							out.println(cont1.getPointN(y).getX() + " "
 									+ cont1.getPointN(y).getY()
-									+ System.getProperty("line.separator")+ System.getProperty("line.separator"));
+									+ System.getProperty("line.separator")
+									+ System.getProperty("line.separator"));
 
 						} else if (y == cont1.getNumPoints() - 1) {
 							out.println(cont1.getPointN(y).getX() + " "
@@ -552,8 +557,11 @@ public class Parcel extends Lot {
 				}
 
 			}
+
 			out.close();
-			logger.info("Успешное сохранение текстового файла. ");
+			logger.info("Успешное сохранение текстового файла в "
+					+ newFile.getAbsolutePath()
+					+ System.getProperty("line.separator"));
 		} catch (IOException e) {
 			e.printStackTrace();
 			logger.error(e.getLocalizedMessage());

@@ -22,7 +22,7 @@ public class Method {
 	@FXML
 	private TextArea text;
 	@FXML
-	private TextArea logText;
+	private TextArea textAreaLog;
 	@FXML
 	private TextField textF;
 	@FXML
@@ -68,11 +68,18 @@ public class Method {
 		}
 
 	}
+	@FXML
+	protected void initialize() {
+        TextAreaHandler.setTextArea(this.textAreaLog);
+        Logger.getRootLogger().addAppender(new TextAreaHandler());
+    	textAreaLog.setText("Начало работы Vertex2.0...JavaFX\nРазработка:\n" );
+		textAreaLog.end();
+	}
 
 	@FXML
 	protected void doConvertWKT() {
 		text.setText(acp.getResult().toText());
-
+		logger.info("Успешная конвертация МультиПолигона в WKT.");
 	}
 
 	@FXML
@@ -84,7 +91,7 @@ public class Method {
 					+ System.getProperty("line.separator");
 		}
 		text.setText(s);
-
+		logger.info("Успешная конвертация Полигонов в WKT.");
 	}
 
 	@FXML
