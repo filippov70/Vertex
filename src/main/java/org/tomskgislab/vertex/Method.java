@@ -12,6 +12,7 @@ import org.tomskgislab.vertex.core.Parcel;
 import com.vividsolutions.jts.io.ParseException;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -21,7 +22,13 @@ public class Method {
 	@FXML
 	private TextArea text;
 	@FXML
+	private TextArea logText;
+	@FXML
 	private TextField textF;
+	@FXML
+	private Menu saveShp;
+	@FXML
+	private Menu saveWKT;
 	@FXML
 	private MenuItem saveShpPolygon;
 	@FXML
@@ -34,63 +41,72 @@ public class Method {
 	private MenuItem saveODS;
 	@FXML
 	private MenuItem saveTXT;
+	@FXML
+	private MenuItem start;
+
+	ACadParser acp = null;
 
 	@FXML
-	public void getText() {
-		this.text.getText();
+	protected void start() {
+		try {
+			acp = new ACadParser(text.getText());
+			if (acp != null) {
+				saveShp.setDisable(false);
+				saveWKT.setDisable(false);
+				saveWKTMultiPolygon.setDisable(false);
+				saveWKTPolygon.setDisable(false);
+				saveShpMultiPolygon.setDisable(false);
+				saveShpPolygon.setDisable(false);
+				saveODS.setDisable(false);
+				saveTXT.setDisable(false);
+				logger.info("Выбирете вариант сохранения.");
+			}
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			logger.info("Ошибка обработки текстовых данных.");
+		}
+
 	}
 
 	@FXML
 	protected void doConvertWKT() {
-		try {
-			ACadParser acp = new ACadParser(text.getText());
-
-			text.setText(acp.getResult().toText());
-		} catch (ParseException ex) {
-			logger.error(ex.getLocalizedMessage());
-		}
+		text.setText(acp.getResult().toText());
 
 	}
 
 	@FXML
 	protected void doConvertWKTPolygons() {
-		try {
-			ACadParser acp = new ACadParser(text.getText());
-
-			String s = "";
-			for (int i = 0; i < acp.getPolys().size(); i++) {
-				s = s + acp.getPolys().get(i).toText() + "\n";
-			}
-			text.setText(s);
-		} catch (ParseException ex) {
-			logger.error(ex.getLocalizedMessage());
+		// ACadParser acp = new ACadParser(text.getText());
+		String s = "";
+		for (int i = 0; i < acp.getPolys().size(); i++) {
+			s = s + acp.getPolys().get(i).toText()
+					+ System.getProperty("line.separator");
 		}
+		text.setText(s);
 
 	}
 
 	@FXML
 	protected void doReport() throws NoSuchAuthorityCodeException,
 			FactoryException, ParseException {
-		ACadParser acp = new ACadParser(text.getText());
-
-		Parcel odf = new Parcel(acp.getResult(), textF.getText());
+		Parcel odf = null;
+		odf = new Parcel(acp.getResult(), textF.getText());
 		odf.saveToOdf(acp);
 
 	}
 
 	@FXML
 	protected void doSaveShape() throws NoSuchAuthorityCodeException,
-			FactoryException, IOException, ParseException {
-		ACadParser acp = new ACadParser(text.getText());
-
-		Parcel par = new Parcel(acp.getResult(), textF.getText());
+			FactoryException, IOException {
+		Parcel par = null;
+		par = new Parcel(acp.getResult(), textF.getText());
 		par.saveToShape();
+
 	}
 
 	@FXML
-	protected void doShapes() throws ParseException {
-		ACadParser acp = new ACadParser(text.getText());
-
+	protected void doShapes() {
 		Parcel par1 = new Parcel(acp.getPolys());
 		try {
 			par1.saveToShape();
@@ -100,12 +116,11 @@ public class Method {
 		}
 
 	}
+
 	@FXML
-	protected void saveTXT() throws ParseException {
-		ACadParser acp = new ACadParser(text.getText());
+	protected void saveTXT() {
 		Parcel p = new Parcel(acp.getPolys());
 		p.saveTXT();
 	}
-
 
 }
