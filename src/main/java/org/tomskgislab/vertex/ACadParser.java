@@ -3,7 +3,10 @@ package org.tomskgislab.vertex;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.geotools.geometry.jts.JTSFactoryFinder;
+import org.tomskgislab.vertex.core.Lot;
 
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.CoordinateList;
@@ -32,15 +35,16 @@ public class ACadParser {
 	String dataTextDraftSight = "GETPROPERTIES\r\n2 обнаружено, 3 всего\r\nLWPOLYLINE\r\nДескриптор: 7C\r\nРежим: Модель\r\nLayer: 0\r\nЦвет линии: ByLayer\r\nСтиль линии: ByLayer\r\nТолщина линии: ByLayer\r\nФлаги полилинии: Замкнутый\r\nПлощадь: 16732.571\r\nПериметр: 557.537\r\nМесторасположение 0: X=363.586 Y=243.45 Z=0\r\nМесторасположение 1: X=362.619 Y=297.595 Z=0\r\nМесторасположение 2: X=478.643 Y=303.396 Z=0\r\nМесторасположение 3: X=513.451 Y=211.544 Z=0\r\nМесторасположение 4: X=466.074 Y=139.996 Z=0\r\nМесторасположение 5: X=386.791 Y=163.2 Z=0\r\nМесторасположение 6: X=419.664 Y=201.875 Z=0\r\nLWPOLYLINE\r\nДескриптор: 7B\r\nРежим: Модель\r\nLayer: 0\r\nЦвет линии: ByLayer\r\nСтиль линии: ByLayer\r\nТолщина линии: ByLayer\r\nФлаги полилинии: Замкнутый\r\nПлощадь: 15114.375\r\nПериметр: 529.843\r\nМесторасположение 0: X=113.167 Y=142.896 Z=0\r\nМесторасположение 1: X=113.167 Y=226.047 Z=0\r\nМесторасположение 2: X=294.939 Y=226.047 Z=0\r\nМесторасположение 3: X=294.939 Y=142.896 Z=0\r\nНажмите ENTER для продолжения»\r\nLWPOLYLINE\r\nДескриптор: 7E\r\nРежим: Модель\r\nLayer: 0\r\nЦвет линии: ByLayer\r\nСтиль линии: ByLayer\r\nТолщина линии: ByLayer\r\nФлаги полилинии: Открыть\r\nПлощадь: 0\r\nПериметр: 444.992\r\nМесторасположение 0: X=152.809 Y=304.363 Z=0\r\nМесторасположение 1: X=131.538 Y=350.773 Z=0\r\nМесторасположение 2: X=198.252 Y=381.712 Z=0\r\nМесторасположение 3: X=265.933 Y=370.11 Z=0\r\nМесторасположение 4: X=275.601 Y=325.634 Z=0\r\nМесторасположение 5: X=256.264 Y=279.225 Z=0\r\nМесторасположение 6: X=205.02 Y=261.821 Z=0\r\nМесторасположение 7: X=134.439 Y=283.092 Z=0\r\nМесторасположение 8: X=152.809 Y=304.363 Z=0";
 
 	// строка из DraftSight
-
+	private static Logger logger = LogManager.getLogger(ACadParser.class);
 	//
 	private MultiPolygon result;
 
 	public ACadParser(String ACad) throws ParseException {
 
 		if (ACad.contains("POLYGON") || ACad.contains("LINESTRING")) {
+			logger.info("Обработка WKT. ");
 			WKTpars(ACad);
-			if (rings!=null){
+			if (rings != null) {
 				while (rings.size() > 0) {
 					FindOwner(spatialCheck());// добавлено
 				}
@@ -56,6 +60,7 @@ public class ACadParser {
 
 		} else
 			coord = doCoordinate(ACad);
+			logger.info("Обработка данных САПР ");
 		if (coord != null) {
 			for (int i = 0; i < coord.size(); i++) {
 				rings.add(createLinearRing(coord.get(i)));
@@ -95,7 +100,7 @@ public class ACadParser {
 				if (i == txt.size() - 1) {
 					container.add(inside);
 					inside = new ArrayList<String>();
-				  } else if (txt.get(i + 1).contains("X=") == false) {
+				} else if (txt.get(i + 1).contains("X=") == false) {
 					container.add(inside);
 					inside = new ArrayList<String>();
 
@@ -112,13 +117,13 @@ public class ACadParser {
 								.get(r)
 								.substring(
 										container.get(i).get(r).indexOf("X") + 2,
-										 container.get(i).get(r).indexOf("Y") - 1)),
+										container.get(i).get(r).indexOf("Y") - 1)),
 						Double.valueOf(container
 								.get(i)
 								.get(r)
 								.substring(
 										container.get(i).get(r).indexOf("Y") + 2,
-										 container.get(i).get(r).indexOf("Z") - 1))));
+										container.get(i).get(r).indexOf("Z") - 1))));
 			}
 			coord.add(new CoordinateList(XY.toArray(new Coordinate[XY.size()])));
 		}
@@ -231,8 +236,9 @@ public class ACadParser {
 					LinearRing ring = geometryFactory.createLinearRing(ls
 							.getCoordinates());
 					rings.add(ring);
-//					Polygon polygon = geometryFactory.createPolygon(ring, null);
-//					polys.add(polygon);
+					// Polygon polygon = geometryFactory.createPolygon(ring,
+					// null);
+					// polys.add(polygon);
 				}
 			}
 

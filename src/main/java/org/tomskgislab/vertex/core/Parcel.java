@@ -177,7 +177,10 @@ public class Parcel extends Lot {
 					+ Math.pow((pt2.y - pt1.y), 2));
 			return lngth;
 		} catch (Exception ex) {
+			logger.info("Ошибка вычисления длины линий ");
 			return -1.0;
+			
+			
 		}
 	}
 
@@ -212,6 +215,7 @@ public class Parcel extends Lot {
 			logger.info("Успешное сохранение таблицы. ");
 		} catch (Exception ex) {
 			logger.error(ex.getLocalizedMessage());
+			logger.info("Ошибка созранения таблицы. ");
 		}
 	}
 
@@ -347,9 +351,10 @@ public class Parcel extends Lot {
 									+ " кв.м");
 				}
 			}
-
+			logger.info("Успешное создание таблицы ВЕДОМОСТЬ КООРДИНАТ");
 		} catch (Exception ex) {
 			logger.error(ex.getLocalizedMessage());
+			logger.info("Ошибка при создании таблицы ВЕДОМОСТЬ КООРДИНАТ");
 		}
 	}
 
@@ -485,9 +490,10 @@ public class Parcel extends Lot {
 									+ " кв.м");
 				}
 			}
-
+			logger.info("Успешное создание таблицы ГЕОДАННЫЕ ");
 		} catch (Exception ex) {
 			logger.error(ex.getLocalizedMessage());
+			logger.info("Ошибка при создании таблицы ГЕОДАННЫЕ");
 		}
 	}
 
@@ -547,11 +553,11 @@ public class Parcel extends Lot {
 
 			}
 			out.close();
-
+			logger.info("Успешное сохранение текстового файла. ");
 		} catch (IOException e) {
-
 			e.printStackTrace();
-
+			logger.error(e.getLocalizedMessage());
+			logger.info("Ошибка при сохранении текстового файла");
 		}
 	}
 }
