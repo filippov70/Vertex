@@ -53,6 +53,11 @@
             <MenuItem disable="true" mnemonicParsing="false" onAction="#saveTXT" text="Сохранить в TXT" visible="true" fx:id="saveTXT" />
           </items>
         </Menu>
+        <Menu mnemonicParsing="false" text="Справка">
+          <items>
+            <MenuItem mnemonicParsing="false" onAction="#getHelp" text="Помощь" fx:id="help" />
+          </items>
+        </Menu>
       </menus>
     </MenuBar>
   </top>
