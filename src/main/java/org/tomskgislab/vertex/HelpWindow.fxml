@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="TOP_CENTER" fillWidth="false" prefHeight="124.0" prefWidth="217.0" xmlns:fx="http://javafx.com/fxml">
+  <!-- TODO Add Nodes -->
+  <children>
+    <Label prefHeight="60.0" prefWidth="217.0" text="По всем вопросам обащайтесь по адресу:" textAlignment="CENTER" textOverrun="ELLIPSIS" underline="false" wrapText="true" />
+    <TextField alignment="TOP_CENTER" editable="false" focusTraversable="true" prefHeight="24.5" prefWidth="217.0" text="Starprinter2011@gmail.com" />
+  </children>
+  <effect>
+    <Lighting>
+      <bumpInput>
+        <Shadow />
+      </bumpInput>
+      <light>
+        <javafx.scene.effect.Light.Distant color="#ccedff" />
+      </light>
+    </Lighting>
+  </effect>
+</VBox>
