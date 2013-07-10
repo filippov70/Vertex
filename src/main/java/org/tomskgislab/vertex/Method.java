@@ -5,6 +5,7 @@ import java.util.Formatter;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.geotools.factory.GeoTools;
 import org.opengis.referencing.FactoryException;
 import org.opengis.referencing.NoSuchAuthorityCodeException;
 import org.tomskgislab.vertex.core.Parcel;
@@ -12,17 +13,23 @@ import org.tomskgislab.vertex.core.Parcel;
 import com.vividsolutions.jts.io.ParseException;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 public class Method {
 	private static Logger logger = LogManager.getLogger(Method.class);
 	@FXML
 	private TextArea text;
 	@FXML
-	private TextArea logText;
+	private TextArea textAreaLog;
 	@FXML
 	private TextField textF;
 	@FXML
@@ -43,6 +50,8 @@ public class Method {
 	private MenuItem saveTXT;
 	@FXML
 	private MenuItem start;
+	@FXML
+	private MenuItem help;
 
 	ACadParser acp = null;
 
@@ -70,9 +79,17 @@ public class Method {
 	}
 
 	@FXML
+	protected void initialize() {
+		TextAreaHandler.setTextArea(this.textAreaLog);
+		Logger.getRootLogger().addAppender(new TextAreaHandler());
+		textAreaLog.setText("Начало работы Vertex2.0...JavaFX\nРазработка:\n");
+		textAreaLog.end();
+	}
+
+	@FXML
 	protected void doConvertWKT() {
 		text.setText(acp.getResult().toText());
-
+		logger.info("Успешная конвертация МультиПолигона в WKT.");
 	}
 
 	@FXML
@@ -84,7 +101,7 @@ public class Method {
 					+ System.getProperty("line.separator");
 		}
 		text.setText(s);
-
+		logger.info("Успешная конвертация Полигонов в WKT.");
 	}
 
 	@FXML
@@ -123,4 +140,20 @@ public class Method {
 		p.saveTXT();
 	}
 
+	@FXML
+	protected void getHelp() {
+		Stage PS = new Stage();
+		PS.setTitle("Помощь");
+		try {
+			FXMLLoader loader = new FXMLLoader(
+					App.class.getResource("HelpWindow.fxml"));
+			VBox dh = (VBox) loader.load();
+			Scene s = new Scene(dh);
+			PS.setScene(s);
+			PS.show();
+		} catch (IOException ex) {
+			logger.error(ex.getMessage());
+			System.exit(-1);
+		}
+	}
 }

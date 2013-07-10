@@ -4,6 +4,8 @@ import java.io.IOException;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.geotools.factory.GeoTools;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -14,6 +16,7 @@ public class App extends Application {
 	private static final Logger logger = LogManager.getLogger( App.class );
 	@Override
 	public void start(Stage primaryStage) {
+		 primaryStage.setTitle("Vertex 2.0 GNU GPL. JavaFX. GeoTools " + GeoTools.getVersion());
 		try {
 			FXMLLoader loader = new FXMLLoader(App.class.getResource("Main.fxml"));
 			logger.info("loading fxml...");
