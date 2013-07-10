@@ -534,18 +534,18 @@ public class Parcel extends Lot {
 					for (int y = 0; y < cont1.getNumPoints(); y++) {
 						if (y == cont1.getNumPoints() - 1
 								&& r == polyg.get(i).getNumInteriorRing() - 1) {
-							out.println(cont1.getPointN(y).getX() + " "
-									+ cont1.getPointN(y).getY()
+							out.println(cont1.getPointN(y).getY() + " "
+									+ cont1.getPointN(y).getX()
 									+ System.getProperty("line.separator")+ System.getProperty("line.separator"));
 
 						} else if (y == cont1.getNumPoints() - 1) {
-							out.println(cont1.getPointN(y).getX() + " "
-									+ cont1.getPointN(y).getY()
+							out.println(cont1.getPointN(y).getY() + " "
+									+ cont1.getPointN(y).getX()
 									+ System.getProperty("line.separator"));
 
 						} else {
-							out.println(cont1.getPointN(y).getX() + " "
-									+ cont1.getPointN(y).getY());
+							out.println(cont1.getPointN(y).getY() + " "
+									+ cont1.getPointN(y).getX());
 						}
 					}
 
