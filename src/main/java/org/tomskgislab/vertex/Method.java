@@ -1,8 +1,11 @@
 package org.tomskgislab.vertex;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.Formatter;
+import java.util.ResourceBundle;
 
+import javafx.fxml.Initializable;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.geotools.factory.GeoTools;
@@ -24,7 +27,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class Method {
+public class Method implements Initializable{
 	private static Logger logger = LogManager.getLogger(Method.class);
 	@FXML
 	private TextArea text;
@@ -54,6 +57,18 @@ public class Method {
 	private MenuItem help;
 
 	ACadParser acp = null;
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        this.textAreaLog = new TextArea();
+        TextAreaHandler.setTextArea(this.textAreaLog);
+        Logger.getRootLogger().addAppender(new TextAreaHandler());
+        textAreaLog.setText("Начало работы Vertex2.0...JavaFX\nРазработка:\n");
+        textAreaLog.end();
+    }
+    @FXML
+    protected void initialize() {
+
+    }
 
 	@FXML
 	protected void start() {
@@ -76,14 +91,6 @@ public class Method {
 			logger.info("Ошибка обработки текстовых данных.");
 		}
 
-	}
-
-	@FXML
-	protected void initialize() {
-		TextAreaHandler.setTextArea(this.textAreaLog);
-		Logger.getRootLogger().addAppender(new TextAreaHandler());
-		textAreaLog.setText("Начало работы Vertex2.0...JavaFX\nРазработка:\n");
-		textAreaLog.end();
 	}
 
 	@FXML
@@ -156,4 +163,5 @@ public class Method {
 			System.exit(-1);
 		}
 	}
+
 }
